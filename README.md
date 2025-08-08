@@ -1,7 +1,9 @@
 **Problem Statement**
+
 Identify and target persuadable customers from the Wave-1 non-responder group to optimize the Wave-2 marketing upsell campaign.
 
 **Introduction**
+
 The Wave-1 campaign reached 801,821 business customers, but many didn’t upgrade. From a sample of 75,000, we aimed to identify those most likely to respond in Wave-2. Instead of mass emailing, we pursued a targeted approach to reduce costs, avoid customer fatigue, and boost profitability. We applied logistic regression and neural networks (with and without interaction terms and engineered features) to segment persuadable customers. Our final recommendation is based on model performance, response rates, and expected profitability.
 
 
@@ -20,6 +22,7 @@ The Wave-1 campaign reached 801,821 business customers, but many didn’t upgrad
 
 
 **Feature Engineering**
+
 Several new features were tested but ultimately removed due to multicollinearity or lack of predictive improvement. Examples include:
 
 * **Avg\_Order\_Value**, **Is\_Recent\_Buyers**, **CLV**, and others
@@ -27,16 +30,19 @@ Several new features were tested but ultimately removed due to multicollinearity
 * Final model retained only the most meaningful, interpretable features
 
 **Interaction Effects**
+
 Interaction terms were tested, especially between `bizflag` and `upgraded`, but provided no meaningful performance gain or significance. The base model without interactions was preferred.
 
 
 **Modeling**
+
 **1. Predictive Goal**: Identify non-responders from Wave-1 likely to respond in Wave-2
 **2. Models Used**:
 
 * **Logistic Regression**: Included variables like `numords`, `dollars`, `last`, `zip_bins`, `version1`, and interaction terms. AUC = 0.755
 * **Neural Network (MLP)**: One hidden layer (5 neurons, tanh activation). AUC = 0.775
   **3. Evaluation**:
+  
 * Neural Network slightly outperformed logistic regression
 * Logistic regression offered better interpretability
 * Key predictors: `zip_bins`, `upgraded`, `last`; `bizflag` and `dollars` had limited impact
@@ -65,5 +71,6 @@ Interaction terms were tested, especially between `bizflag` and `upgraded`, but 
 
 
 **Conclusion**
+
 This analysis effectively identified persuadable Wave-1 non-responders using logistic regression and neural networks. The neural network model (AUC 0.775) was used to target 5,830 customers in Wave-2, yielding a projected 50.8% return on marketing spend. Prior upgrade history and recent engagement were strong predictors, while overall spending was not. This data-driven approach enables more efficient, cost-effective, and profitable customer targeting.
 
